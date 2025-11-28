@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С Новым 2026 Годом! 🐎✨</title>
+    <title>LEGENDARY RIG | i3-10100F + GTX 1050 Ti</title>
     <style>
         * {
             margin: 0;
@@ -12,525 +12,582 @@
         }
 
         :root {
-            --gold: #FFD700;
-            --silver: #C0C0C0;
-            --red: #FF6B6B;
-            --green: #51CF66;
-            --blue: #4DABF7;
-            --purple: #CC5DE8;
-            --dark-blue: #1A1A2E;
+            --retro-blue: #00a8ff;
+            --retro-pink: #ff00ff;
+            --retro-green: #00ff00;
+            --retro-yellow: #ffff00;
+            --retro-bg: #0a0a0a;
+            --crt-glow: #00ff00;
         }
 
         body {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, #16213E 50%, #0F3460 100%);
-            color: white;
-            font-family: 'Arial', sans-serif;
-            min-height: 100vh;
+            background: var(--retro-bg);
+            color: var(--retro-green);
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
             overflow-x: hidden;
+            position: relative;
         }
 
-        .snow-container {
+        /* CRT Эффект */
+        .crt::before {
+            content: " ";
+            display: block;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
             z-index: 1000;
+            pointer-events: none;
+            animation: scanline 0.1s linear infinite;
         }
 
-        .snowflake {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: fall linear infinite;
+        .crt::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(0, 255, 0, 0.02);
+            opacity: 0;
+            z-index: 1001;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
         }
 
-        /* Hero Section */
-        .hero {
+        /* Главный экран */
+        .boot-screen {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 20px;
+            border: 8px double var(--retro-blue);
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glitch-text {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 
+                2px 2px 0 var(--retro-pink),
+                -2px -2px 0 var(--retro-blue);
+            animation: glitch 2s infinite;
+            margin: 2rem 0;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 3rem 0;
+        }
+
+        .spec-card {
+            border: 3px solid var(--retro-yellow);
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .spec-card:hover {
+            border-color: var(--retro-pink);
+            transform: scale(1.02);
+            box-shadow: 0 0 20px var(--retro-pink);
+        }
+
+        .spec-title {
+            color: var(--retro-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--retro-green);
+            padding-bottom: 5px;
+        }
+
+        .spec-item {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .spec-item::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: var(--retro-yellow);
+        }
+
+        /* Subaru Section */
+        .subaru-section {
+            border: 6px dotted var(--retro-blue);
+            padding: 30px;
+            margin: 3rem 0;
+            background: rgba(0, 168, 255, 0.1);
+            position: relative;
+        }
+
+        .subaru-title {
+            color: var(--retro-yellow);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .subaru-car {
+            font-size: 4rem;
+            text-align: center;
+            animation: drive 3s ease-in-out infinite;
+            margin: 2rem 0;
+        }
+
+        .subaru-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 2rem;
+        }
+
+        .subaru-spec {
+            background: rgba(255, 255, 0, 0.1);
+            padding: 15px;
+            border-left: 4px solid var(--retro-yellow);
+        }
+
+        /* Performance Bars */
+        .performance {
+            margin: 3rem 0;
+        }
+
+        .perf-bar {
+            background: #000;
+            border: 2px solid var(--retro-green);
+            height: 30px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .perf-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--retro-blue), var(--retro-pink));
+            animation: loadBar 2s ease-in-out;
+            position: relative;
+        }
+
+        .perf-fill::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255,255,255,0.3) 50%, 
+                transparent 100%);
+            animation: shine 1.5s infinite;
+        }
+
+        /* Gaming Stats */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 3rem 0;
+        }
+
+        .game-card {
+            background: rgba(255, 0, 255, 0.1);
+            border: 2px solid var(--retro-pink);
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px var(--retro-pink);
+        }
+
+        .game-fps {
+            font-size: 2rem;
+            color: var(--retro-green);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* Friend Message */
+        .friend-message {
+            border: 4px solid var(--retro-yellow);
+            padding: 30px;
+            margin: 3rem 0;
+            background: rgba(255, 255, 0, 0.05);
             text-align: center;
             position: relative;
         }
 
-        .hero-content h1 {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--gold), var(--silver), var(--red), var(--green), var(--blue), var(--purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: rainbow 3s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-        }
-
-        .year-2026 {
-            font-size: 8rem;
-            font-weight: 900;
-            margin: 2rem 0;
-            color: var(--gold);
-            text-shadow: 
-                0 0 10px var(--gold),
-                0 0 20px var(--gold),
-                0 0 30px var(--red);
-            animation: pulse 2s infinite, glow 1.5s ease-in-out infinite alternate;
-        }
-
-        .fire-horse {
-            font-size: 6rem;
-            animation: gallop 2s infinite, fire 1s infinite alternate;
-            margin: 2rem 0;
-            filter: drop-shadow(0 0 20px #ff4400);
-        }
-
-        /* Countdown */
-        .countdown {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 600px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .countdown-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--gold);
-        }
-
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .time-unit {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 1rem;
-            border-radius: 10px;
-            min-width: 80px;
-        }
-
-        .time-number {
-            font-size: 2.5rem;
-            color: var(--gold);
-        }
-
-        /* Wishes Section */
-        .wishes {
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .wishes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .wish-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .wish-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
-        }
-
-        .wish-icon {
+        .friend-message::before {
+            content: "⚡";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 3rem;
-            margin-bottom: 1rem;
+            background: var(--retro-bg);
+            padding: 0 20px;
         }
 
-        .wish-title {
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
+        /* Анимации */
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
         }
 
-        /* Fireworks */
-        .fireworks-container {
+        @keyframes flicker {
+            0% { opacity: 0.1; }
+            5% { opacity: 0.1; }
+            10% { opacity: 0.2; }
+            15% { opacity: 0.3; }
+            20% { opacity: 0.4; }
+            25% { opacity: 0.5; }
+            30% { opacity: 0.6; }
+            35% { opacity: 0.7; }
+            40% { opacity: 0.8; }
+            45% { opacity: 0.9; }
+            50% { opacity: 1; }
+            55% { opacity: 0.9; }
+            60% { opacity: 0.8; }
+            65% { opacity: 0.7; }
+            70% { opacity: 0.6; }
+            75% { opacity: 0.5; }
+            80% { opacity: 0.4; }
+            85% { opacity: 0.3; }
+            90% { opacity: 0.2; }
+            95% { opacity: 0.1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes drive {
+            0%, 100% { transform: translateX(-100px) scaleX(1); }
+            25% { transform: translateX(25vw) scaleX(1); }
+            50% { transform: translateX(50vw) scaleX(1); }
+            75% { transform: translateX(75vw) scaleX(-1); }
+        }
+
+        @keyframes loadBar {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes matrix {
+            0% { transform: translateY(-100%); opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { transform: translateY(1000%); opacity: 0; }
+        }
+
+        /* Matrix Rain */
+        .matrix-rain {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 999;
+            z-index: -1;
         }
 
-        .firework {
+        .matrix-char {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            animation: explode 1.5s ease-out forwards;
-        }
-
-        /* Message Section */
-        .message {
-            padding: 4rem 2rem;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .message-content {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        /* Animations */
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold); }
-            100% { text-shadow: 0 0 20px var(--gold), 0 0 30px var(--red), 0 0 40px var(--gold); }
-        }
-
-        @keyframes rainbow {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(180deg); }
-        }
-
-        @keyframes gallop {
-            0%, 100% { transform: translateX(0) scale(1); }
-            25% { transform: translateX(-20px) scale(1.1); }
-            50% { transform: translateX(0) scale(1); }
-            75% { transform: translateX(20px) scale(1.1); }
-        }
-
-        @keyframes fire {
-            0% { filter: drop-shadow(0 0 10px #ff4400) hue-rotate(0deg); }
-            100% { filter: drop-shadow(0 0 30px #ffff00) hue-rotate(60deg); }
-        }
-
-        @keyframes explode {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 1;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(0) scale(1);
-                opacity: 0;
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
+            color: var(--retro-green);
+            font-family: 'Courier New', monospace;
+            animation: matrix linear infinite;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 3rem;
+            .glitch-text {
+                font-size: 2rem;
             }
             
-            .year-2026 {
-                font-size: 5rem;
+            .spec-grid {
+                grid-template-columns: 1fr;
             }
             
-            .fire-horse {
-                font-size: 4rem;
-            }
-            
-            .countdown-timer {
-                flex-wrap: wrap;
-            }
-            
-            .time-unit {
-                min-width: 60px;
+            .subaru-title {
+                font-size: 1.8rem;
             }
         }
 
-        /* Music Player */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1001;
+        /* Terminal Input Effect */
+        .typing {
+            border-right: 2px solid var(--retro-green);
+            animation: blink 1s infinite;
         }
 
-        .music-btn {
-            background: var(--gold);
-            color: var(--dark-blue);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.1);
+        @keyframes blink {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: var(--retro-green); }
         }
     </style>
 </head>
-<body>
-    <!-- Снег -->
-    <div class="snow-container" id="snow"></div>
+<body class="crt">
+    <!-- Matrix Rain Background -->
+    <div class="matrix-rain" id="matrix"></div>
 
-    <!-- Фейерверки -->
-    <div class="fireworks-container" id="fireworks"></div>
-
-    <!-- Главная секция -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>С НОВЫМ</h1>
-            <div class="year-2026 floating">2026</div>
-            <h1>ГОДОМ!</h1>
-            <div class="fire-horse">🐎✨</div>
-            <p style="font-size: 1.5rem; margin-top: 2rem; opacity: 0.9;">
-                Года Огненной Лошади
-            </p>
-        </div>
-    </section>
-
-    <!-- Обратный отсчет -->
-    <section class="countdown">
-        <div class="countdown-title">До Нового 2027 года осталось:</div>
-        <div class="countdown-timer" id="countdown">
-            <div class="time-unit">
-                <div class="time-number" id="days">364</div>
-                <div>дней</div>
-            </div>
-            <div class="time-unit">
-                <div class="time-number" id="hours">23</div>
-                <div>часов</div>
-            </div>
-            <div class="time-unit">
-                <div class="time-number" id="minutes">59</div>
-                <div>минут</div>
-            </div>
-            <div class="time-unit">
-                <div class="time-number" id="seconds">59</div>
-                <div>секунд</div>
+    <!-- Main Content -->
+    <div class="boot-screen">
+        <!-- Header -->
+        <div style="text-align: center;">
+            <div class="glitch-text">ultimate battle station</div>
+            <div style="color: var(--retro-blue); font-size: 1.2rem; margin-bottom: 2rem;">
+                [ LEGENDARY RIG - i3 10100F + GTX 1050 Ti EDITION ]
             </div>
         </div>
-    </section>
 
-    <!-- Пожелания -->
-    <section class="wishes">
-        <h2 style="font-size: 2.5rem; margin-bottom: 3rem; color: var(--gold);">🎁 Пусть 2026 год принесёт:</h2>
-        <div class="wishes-grid">
-            <div class="wish-card">
-                <div class="wish-icon">💫</div>
-                <h3 class="wish-title">Исполнение желаний</h3>
-                <p>Пусть все ваши мечты сбываются, а цели достигаются с легкостью Огненной Лошади</p>
+        <!-- System Specs -->
+        <div class="spec-grid">
+            <div class="spec-card">
+                <div class="spec-title">🚀 PROCESSOR</div>
+                <div class="spec-item">Intel Core i3-10100F</div>
+                <div class="spec-item">4 Cores / 8 Threads</div>
+                <div class="spec-item">Base Clock: 3.6 GHz</div>
+                <div class="spec-item">Boost Clock: 4.3 GHz</div>
+                <div class="spec-item">LGA 1200 Socket</div>
+                <div style="color: var(--retro-yellow); margin-top: 10px;">► COOLER MASTER RR-212</div>
             </div>
-            <div class="wish-card">
-                <div class="wish-icon">❤️</div>
-                <h3 class="wish-title">Любви и гармонии</h3>
-                <p>Пусть в вашем доме всегда царят взаимопонимание, тепло и семейное счастье</p>
+
+            <div class="spec-card">
+                <div class="spec-title">🎮 GRAPHICS CARD</div>
+                <div class="spec-item">NVIDIA GeForce GTX 1050 Ti</div>
+                <div class="spec-item">4GB GDDR5 VRAM</div>
+                <div class="spec-item">768 CUDA Cores</div>
+                <div class="spec-item">GPU Clock: 1290 MHz</div>
+                <div class="spec-item">Boost Clock: 1392 MHz</div>
+                <div style="color: var(--retro-green); margin-top: 10px;">► LEGENDARY BUDGET KING</div>
             </div>
-            <div class="wish-card">
-                <div class="wish-icon">🚀</div>
-                <h3 class="wish-title">Карьерного роста</h3>
-                <p>Новых профессиональных вершин, смелых проектов и достойного признания</p>
-            </div>
-            <div class="wish-card">
-                <div class="wish-icon">🏥</div>
-                <h3 class="wish-title">Крепкого здоровья</h3>
-                <p>Энергии Огненной Лошади, бодрости духа и отличного самочувствия каждый день</p>
-            </div>
-            <div class="wish-card">
-                <div class="wish-icon">💰</div>
-                <h3 class="wish-title">Финансового благополучия</h3>
-                <p>Стабильного дохода, выгодных возможностей и материального достатка</p>
-            </div>
-            <div class="wish-card">
-                <div class="wish-icon">🌍</div>
-                <h3 class="wish-title">Интересных путешествий</h3>
-                <p>Увлекательных маршрутов, ярких впечатлений и незабываемых приключений</p>
+
+            <div class="spec-card">
+                <div class="spec-title">💾 MEMORY & STORAGE</div>
+                <div class="spec-item">16GB DDR4 RAM</div>
+                <div class="spec-item">Dual Channel 2666MHz</div>
+                <div class="spec-item">1TB HDD Storage</div>
+                <div class="spec-item">SATA III 6Gb/s</div>
+                <div class="spec-item">7200 RPM Speed</div>
+                <div style="color: var(--retro-pink); margin-top: 10px;">► MASSIVE STORAGE SPACE</div>
             </div>
         </div>
-    </section>
 
-    <!-- Поздравительное сообщение -->
-    <section class="message">
-        <div class="message-content">
-            <h2 style="color: var(--gold); margin-bottom: 2rem; font-size: 2rem;">Дорогие друзья!</h2>
-            <p style="margin-bottom: 1.5rem;">
-                Пусть год Огненной Лошади 🐎 принесёт вам стремительный рост, неукротимую энергию 
-                и смелость в достижении целей. Как благородный скакун преодолевает любые преграды, 
-                так и вы пусть легко справляетесь со всеми challenges!
-            </p>
-            <p style="margin-bottom: 1.5rem;">
-                Желаем, чтобы огонь в душе никогда не угасал, а каждое начинание 
-                зажигало новые звёзды успеха на вашем небосклоне.
-            </p>
-            <p style="font-size: 1.5rem; color: var(--gold); font-weight: bold;">
-                Счастливого Нового 2026 года! 🎄✨
-            </p>
+        <!-- Subaru Section -->
+        <div class="subaru-section">
+            <div class="subaru-title">SUBARU WRX STI 💨</div>
+            <div class="subaru-car">🚗💨</div>
+            <div style="text-align: center; color: var(--retro-yellow); margin: 1rem 0;">
+                "Boxer Engine Symphony + AWD Dominance"
+            </div>
+            
+            <div class="subaru-specs">
+                <div class="subaru-spec">
+                    <strong>EJ25 Engine</strong><br>
+                    2.5L Turbocharged
+                </div>
+                <div class="subaru-spec">
+                    <strong>305 HP</strong><br>
+                    @ 6000 RPM
+                </div>
+                <div class="subaru-spec">
+                    <strong>393 Nm</strong><br>
+                    Torque @ 4000 RPM
+                </div>
+                <div class="subaru-spec">
+                    <strong>Symmetrical AWD</strong><br>
+                    Full-time 4WD
+                </div>
+            </div>
         </div>
-    </section>
 
-    <!-- Музыкальный плеер -->
-    <div class="music-player">
-        <button class="music-btn" onclick="toggleMusic()">🎵</button>
-        <audio id="newYearMusic" loop>
-            <source src="https://assets.mixkit.co/music/preview/mixkit-christmas-magic-914.mp3" type="audio/mpeg">
-        </audio>
+        <!-- Performance Metrics -->
+        <div class="performance">
+            <div class="spec-title">📊 PERFORMANCE METRICS</div>
+            
+            <div style="margin: 1rem 0;">
+                <div>Gaming Power: <span style="color: var(--retro-green);">READY</span></div>
+                <div class="perf-bar">
+                    <div class="perf-fill" style="width: 85%"></div>
+                </div>
+            </div>
+            
+            <div style="margin: 1rem 0;">
+                <div>Cooling Efficiency: <span style="color: var(--retro-blue);">OPTIMAL</span></div>
+                <div class="perf-bar">
+                    <div class="perf-fill" style="width: 78%"></div>
+                </div>
+            </div>
+            
+            <div style="margin: 1rem 0;">
+                <div>Multitasking: <span style="color: var(--retro-pink);">STABLE</span></div>
+                <div class="perf-bar">
+                    <div class="perf-fill" style="width: 92%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gaming Performance -->
+        <div class="games-grid">
+            <div class="game-card">
+                <div>🎯</div>
+                <div style="font-weight: bold; margin: 10px 0;">CS:GO</div>
+                <div class="game-fps">144+ FPS</div>
+                <div style="color: var(--retro-blue);">Competitive Settings</div>
+            </div>
+            
+            <div class="game-card">
+                <div>⚔️</div>
+                <div style="font-weight: bold; margin: 10px 0;">Valorant</div>
+                <div class="game-fps">120+ FPS</div>
+                <div style="color: var(--retro-green);">Medium Settings</div>
+            </div>
+            
+            <div class="game-card">
+                <div>🏎️</div>
+                <div style="font-weight: bold; margin: 10px 0;">Forza Horizon</div>
+                <div class="game-fps">60 FPS</div>
+                <div style="color: var(--retro-yellow);">Low Settings</div>
+            </div>
+            
+            <div class="game-card">
+                <div>🔫</div>
+                <div style="font-weight: bold; margin: 10px 0;">GTA V</div>
+                <div class="game-fps">70 FPS</div>
+                <div style="color: var(--retro-pink);">Normal Settings</div>
+            </div>
+        </div>
+
+        <!-- Friend Message -->
+        <div class="friend-message">
+            <div style="font-size: 1.5rem; color: var(--retro-yellow); margin-bottom: 1rem;">
+                БРАТАН, ЭТОТ ПК - ЛЕГЕНДА! 🚀
+            </div>
+            <div style="color: var(--retro-green); line-height: 1.6;">
+                i3-10100F и GTX 1050 Ti - нерушимая комбинация для настоящих геймеров!<br>
+                Твой железный друг готов к любым баталиям, а с Subaru на заднем плане -<br>
+                это полный улёт! Респект тебе за выбор легендарного железа! 💪<br>
+                <br>
+                <span style="color: var(--retro-pink);">P.S. Этот сайт такой же крутой, как и твой ПК!</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 3rem; padding: 20px; border-top: 2px solid var(--retro-blue);">
+            <div style="color: var(--retro-yellow); margin-bottom: 10px;">
+                SYSTEM STATUS: <span style="color: var(--retro-green);">OPERATIONAL</span>
+            </div>
+            <div style="color: var(--retro-blue);">
+                © 2024 LEGENDARY RIG | i3-10100F + GTX 1050 Ti + SUBARU POWER
+            </div>
+        </div>
     </div>
 
     <script>
-        // Создание снега
-        function createSnow() {
-            const snowContainer = document.getElementById('snow');
-            const snowflakeCount = 150;
+        // Matrix Rain Effect
+        function createMatrixRain() {
+            const matrix = document.getElementById('matrix');
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
             
-            for (let i = 0; i < snowflakeCount; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.className = 'snowflake';
+            for (let i = 0; i < 50; i++) {
+                const char = document.createElement('div');
+                char.className = 'matrix-char';
+                char.textContent = chars[Math.floor(Math.random() * chars.length)];
+                char.style.left = Math.random() * 100 + 'vw';
+                char.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                char.style.animationDelay = Math.random() * 5 + 's';
+                char.style.fontSize = (Math.random() * 10 + 14) + 'px';
+                char.style.opacity = Math.random() * 0.7 + 0.3;
                 
-                const size = Math.random() * 5 + 2;
-                snowflake.style.width = size + 'px';
-                snowflake.style.height = size + 'px';
-                snowflake.style.left = Math.random() * 100 + 'vw';
-                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                snowflake.style.animationDelay = Math.random() * 5 + 's';
-                snowflake.style.opacity = Math.random() * 0.6 + 0.3;
-                
-                snowContainer.appendChild(snowflake);
+                matrix.appendChild(char);
             }
         }
 
-        // Создание фейерверков
-        function createFirework() {
-            const container = document.getElementById('fireworks');
-            const firework = document.createElement('div');
-            firework.className = 'firework';
+        // Typing Effect
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
             
-            const colors = ['#FF6B6B', '#FFD700', '#4DABF7', '#51CF66', '#CC5DE8', '#FFFFFF'];
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            
-            firework.style.background = color;
-            firework.style.left = Math.random() * 100 + 'vw';
-            firework.style.top = Math.random() * 100 + 'vh';
-            firework.style.boxShadow = `0 0 10px ${color}, 0 0 20px ${color}`;
-            firework.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
-            
-            container.appendChild(firework);
-            
-            // Удаление после анимации
-            setTimeout(() => {
-                firework.remove();
-            }, 1500);
-        }
-
-        // Обратный отсчет
-        function updateCountdown() {
-            const now = new Date();
-            const nextYear = now.getFullYear() + 1;
-            const newYear = new Date(nextYear, 0, 1, 0, 0, 0);
-            const diff = newYear - now;
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
-
-        // Музыка
-        function toggleMusic() {
-            const music = document.getElementById('newYearMusic');
-            const btn = document.querySelector('.music-btn');
-            
-            if (music.paused) {
-                music.play();
-                btn.style.background = '#51CF66';
-                btn.innerHTML = '🔊';
-            } else {
-                music.pause();
-                btn.style.background = '#FFD700';
-                btn.innerHTML = '🎵';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.add('typing');
+                }
             }
+            type();
         }
 
-        // Запуск всех эффектов
+        // Animate performance bars on scroll
+        function animateOnScroll() {
+            const bars = document.querySelectorAll('.perf-fill');
+            bars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        }
+
+        // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
-            createSnow();
-            updateCountdown();
+            createMatrixRain();
             
-            // Обновление обратного отсчета каждую секунду
-            setInterval(updateCountdown, 1000);
+            // Add typing effect to main title
+            const mainTitle = document.querySelector('.glitch-text');
+            const originalText = mainTitle.textContent;
+            typeWriter(mainTitle, originalText, 100);
             
-            // Создание фейерверков каждые 500ms
-            setInterval(createFirework, 500);
+            // Add scroll animation
+            window.addEventListener('scroll', animateOnScroll);
             
-            // Случайные фейерверки каждые 200ms
+            // Random glitch effect
             setInterval(() => {
                 if (Math.random() > 0.7) {
-                    createFirework();
+                    document.body.style.filter = 'hue-rotate(90deg)';
+                    setTimeout(() => {
+                        document.body.style.filter = 'none';
+                    }, 100);
                 }
-            }, 200);
-            
-            // Добавление эффекта печатания для заголовка
-            const title = document.querySelector('.hero-content h1');
-            title.style.animation = 'rainbow 3s ease-in-out infinite';
-            
-            // Запуск автоматической музыки через 3 секунды
-            setTimeout(() => {
-                document.getElementById('newYearMusic').play();
-                document.querySelector('.music-btn').style.background = '#51CF66';
-                document.querySelector('.music-btn').innerHTML = '🔊';
             }, 3000);
+            
+            // Subaru car sound effect (console log)
+            console.log("🚗 VRRROOOOM! Subaru Boxer engine sound! 🏁");
         });
 
-        // Эффект параллакса для снега при движении мыши
-        document.addEventListener('mousemove', function(e) {
-            const snowflakes = document.querySelectorAll('.snowflake');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            snowflakes.forEach((flake, index) => {
-                const speed = (index % 3) * 2;
-                const x = (mouseX - 0.5) * speed;
-                const y = (mouseY - 0.5) * speed;
-                
-                flake.style.transform = `translate(${x}px, ${y}px)`;
-            });
-        });
+        // CRT power on effect
+        setTimeout(() => {
+            document.body.style.animation = 'flicker 0.5s';
+        }, 1000);
     </script>
 </body>
 </html>
